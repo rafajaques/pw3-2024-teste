@@ -4,8 +4,8 @@ use App\Http\Controllers\AnimaisController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('inicial');
+})->name('index');
 
 Route::get('/animais', [AnimaisController::class, 'index'])->name('animais');
 
