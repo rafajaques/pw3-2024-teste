@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnimaisController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,3 +17,14 @@ Route::post('/animais/cadastrar',[AnimaisController::class, 'gravar'])->name('an
 Route::get('/animais/apagar/{animal}', [AnimaisController::class, 'apagar'])->name('animais.apagar');
 
 Route::delete('/animais/apagar/{animal}', [AnimaisController::class, 'deletar']);
+
+Route::prefix('usuarios')->group(function() {
+    Route::get('/', [UsuariosController::class, 'index'])->name('usuarios');
+
+    Route::get('/inserir', [UsuariosController::class, 'create'])->name('usuarios.inserir');
+    
+    Route::post('/inserir', [UsuariosController::class, 'insert'])->name('usuarios.gravar');
+    
+    Route::get('/apagar/{usuario}', [UsuariosController::class, 'remove'])->name('usuarios.apagar');
+
+});
