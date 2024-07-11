@@ -28,3 +28,9 @@ Route::prefix('usuarios')->group(function() {
     Route::get('/apagar/{usuario}', [UsuariosController::class, 'remove'])->name('usuarios.apagar');
 
 });
+
+Route::get('login', [UsuariosController::class, 'login'])->name('login');
+
+Route::post('login', [UsuariosController::class, 'login']);
+
+Route::get('logout', [UsuariosController::class, 'logout'])->name('logout');

@@ -11,6 +11,8 @@
         <a href="{{route('animais')}}">Animais</a>
         |
         <a href="{{route('usuarios')}}">Usuários</a>
+        |
+        <a href="{{route('login')}}">Login</a>
         <hr>
         @yield('conteudo')
     </body>

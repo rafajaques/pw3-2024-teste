@@ -10,7 +10,7 @@ class UsuariosController extends Controller
 {
     public function index()
     {
-        $usuarios = Usuario::orderBy('id', 'asc')->get();
+        $usuarios = Usuario::orderBy('name', 'asc')->get();
 
         return view('usuarios.index', ['usuarios' => $usuarios, 'pagina' => 'usuarios']);
     }
@@ -24,7 +24,7 @@ class UsuariosController extends Controller
     {
         $dados = $form->validate([
             'name' => 'required',
-            'email' => 'email|required',
+            'email' => 'email|required|unique:usuarios',
             'username' => 'required|min:3',
             'password' => 'required|min:3',
             'admin' => 'boolean',
@@ -35,5 +35,17 @@ class UsuariosController extends Controller
         Usuario::create($dados);
 
         return redirect()->route('usuarios');
+    }
+
+    public function login(Request $form) {
+        if ($form->isMethod('POST')) {
+            dd($form);
+        }
+
+        return view('usuarios.login');
+    }
+
+    public function logout() {
+
     }
 }
