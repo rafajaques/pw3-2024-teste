@@ -6,6 +6,21 @@
 
 @section('conteudo')
 
+@if(session('erro'))
+    <div style="background-color:red;color:white">
+    {{ session('erro') }}
+    </div>
+@endif
+
+@if($errors->any())
+<div>
+    <h4>Preenche a porcaria do formulário</h4>
+    @foreach($errors->all() as $erro)
+        <p>{{ $erro }}</p>
+    @endforeach
+</div>  
+@endif
+
 <form method="post" action="{{route('login')}}">
     @csrf
     <input type="text" name="username" placeholder="Usuário">
