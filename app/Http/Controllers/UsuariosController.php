@@ -49,7 +49,7 @@ class UsuariosController extends Controller
 
             // Tenta fazer o login
             if (Auth::attempt($credenciais)) {
-                return redirect()->route('index');
+                return redirect()->intended(route('index'));
             } else {
                 return redirect()->route('login')->with('erro', 'Usuário ou senha inválidos');
             }

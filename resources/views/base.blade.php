@@ -10,8 +10,10 @@
         |
         <a href="{{route('animais')}}">Animais</a>
         |
+        @if (Auth::user() && Auth::user()['admin'])
         <a href="{{route('usuarios')}}">Usuários</a>
         |
+        @endif
 
         @if (Auth::user())
         Olá, <strong>{{ Auth::user()['name'] }}</strong>.

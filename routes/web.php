@@ -18,7 +18,7 @@ Route::get('/animais/apagar/{animal}', [AnimaisController::class, 'apagar'])->na
 
 Route::delete('/animais/apagar/{animal}', [AnimaisController::class, 'deletar']);
 
-Route::prefix('usuarios')->group(function() {
+Route::prefix('usuarios')->middleware('auth')->group(function() {
     Route::get('/', [UsuariosController::class, 'index'])->name('usuarios');
 
     Route::get('/inserir', [UsuariosController::class, 'create'])->name('usuarios.inserir');
@@ -26,7 +26,6 @@ Route::prefix('usuarios')->group(function() {
     Route::post('/inserir', [UsuariosController::class, 'insert'])->name('usuarios.gravar');
     
     Route::get('/apagar/{usuario}', [UsuariosController::class, 'remove'])->name('usuarios.apagar');
-
 });
 
 Route::get('login', [UsuariosController::class, 'login'])->name('login');
