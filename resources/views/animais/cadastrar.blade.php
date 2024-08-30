@@ -16,12 +16,21 @@
 </div>  
 @endif
 
-<form method="post" action="{{ route('animais.gravar') }}">
+<form method="post" action="{{ route('animais.gravar') }}" class="p-10 bg-white rounded shadow-xl">
     @csrf
-    <input type="text" name="nome" placeholder="Nome" value="{{ old('nome') }}">
-    <br>
-    <input type="number" name="idade" placeholder="Idade" value="{{ old('idade') }}">
-    <br>
-    <input type="submit" value="Gravar">
+    <div>
+    <label class="block text-sm text-gray-600" for="nome">Nome</label>
+    <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="nome" name="nome" type="text" required="" placeholder="Nome" aria-label="Nome" value="{{ old('nome') }}">
+    
+    </div>
+
+    <div class="mt-2">
+    <label class="block text-sm text-gray-600" for="nome">Idade</label>
+    <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="idade" name="idade" type="number" required="" placeholder="Idade" aria-label="Idade" value="{{ old('idade') }}">
+    </div>
+    
+    <div class="mt-6">
+    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit"><i class="fas fa-save"></i> Gravar</button>
+    </div>
 </form>
 @endsection
