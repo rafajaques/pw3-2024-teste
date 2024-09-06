@@ -15,5 +15,6 @@ class Animal extends Model
         'id',
         'nome',
         'idade',
+        'imagem',
     ];
 }
