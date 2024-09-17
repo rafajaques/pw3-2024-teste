@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AnimalCadastrado;
 use App\Models\Animal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AnimaisController extends Controller
 {
     public function index()
     {
-        $dados = Animal::all();
+        $dados = Animal::get();
+        // withTrashed - Com apagados
+        // onlyTrashed - Apenas apagados
+        // somente get() - Acesso normal aos não apagados
 
         $animaisPorIdade = Animal::groupBy('idade')
             ->selectRaw('idade, count(*) as quantidade')
@@ -37,9 +42,10 @@ class AnimaisController extends Controller
 
         $dados['imagem'] = $img;
 
-        Animal::create($dados);
-
-        return redirect()->route('animais');
+        #Animal::create($dados);
+        Mail::to('alguem@batata.com')->send(new AnimalCadastrado);
+        return;
+        #return redirect()->route('animais');
     }
 
     public function apagar(Animal $animal)
