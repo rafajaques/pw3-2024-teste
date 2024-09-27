@@ -2,10 +2,12 @@
 
 namespace App\Mail;
 
+use App\Models\Animal;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -17,7 +19,7 @@ class AnimalCadastrado extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public Animal $animal)
     {
         //
     }
@@ -50,6 +52,8 @@ class AnimalCadastrado extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            //Attachment::fromStorage('pdf_exemplo.pdf'),
+        ];
     }
 }

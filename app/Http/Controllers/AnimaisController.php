@@ -26,6 +26,12 @@ class AnimaisController extends Controller
         ]);
     }
 
+    public function ver(Animal $animal) {
+        return view('animais.ver', [
+            'animal' => $animal,
+        ]);
+    }
+
     public function cadastrar()
     {
         return view('animais.cadastrar');
@@ -42,10 +48,11 @@ class AnimaisController extends Controller
 
         $dados['imagem'] = $img;
 
-        #Animal::create($dados);
-        Mail::to('alguem@batata.com')->send(new AnimalCadastrado);
-        return;
-        #return redirect()->route('animais');
+        $animal = Animal::create($dados);
+        
+        Mail::to('alguem@batata.com')->send(new AnimalCadastrado($animal));
+        
+        return redirect()->route('animais');
     }
 
     public function apagar(Animal $animal)

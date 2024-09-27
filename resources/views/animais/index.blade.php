@@ -22,7 +22,11 @@
     <tbody class="text-gray-700">
     @foreach ($animais as $animal)
     <tr @if ($loop->even) class="bg-gray-200" @endif>
-        <td class="text-left py-3 px-4">{{ $animal['nome'] }}</td>
+        <td class="text-left py-3 px-4">
+            <a href="{{route('animais.ver', $animal['id'])}}">
+                {{ $animal['nome'] }}
+            </a>
+        </td>
         <td class="text-left py-3 px-4">{{ $animal['idade'] }}</td>
         <td class="text-left py-3 px-4"><a href="{{ route('animais.apagar', $animal['id']) }}" class="px-4 py-2 font-semibold text-sm bg-red-500 text-white rounded-full shadow-sm"><i class="fas fa-trash"></i> Apagar</a></td>
     </tr>
